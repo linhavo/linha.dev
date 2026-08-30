@@ -1,4 +1,4 @@
-import happy from "../assets/happy.png";
+import happy from "./assets/happy.png";
 
 function App() {
 	return (
