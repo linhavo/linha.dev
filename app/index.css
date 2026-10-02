@@ -18,3 +18,11 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+@layer base {
+	h1 {
+		font-size: var(--text-3xl);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--tw-leading, var(--text-3xl--line-height));
+	}
+}
