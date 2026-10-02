@@ -4,8 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
+		"dev": "react-router dev",
+		"build": "react-router typegen && tsc && react-router build",
 		"preview": "vite preview",
 		"check": "biome check",
 		"format": "biome format --write"
@@ -14,11 +14,14 @@
 		"@tailwindcss/vite": "^4.3.3",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
-		"tailwindcss": "^4.3.3"
+		"react-router": "^8.4.0",
+		"tailwindcss": "^4.3.3",
+		"isbot": "^5"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.11",
 		"@eslint/js": "^10.0.1",
+		"@react-router/dev": "^8.4.0",
 		"@types/node": "^24.13.3",
 		"@types/react": "^19.2.18",
 		"@types/react-dom": "^19.2.4",
