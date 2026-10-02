@@ -1,32 +1,11 @@
 {
+	"extends": "astro/tsconfigs/strict",
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["dist"],
 	"compilerOptions": {
-		"target": "es2023",
-		"lib": ["ES2023", "DOM", "DOM.Iterable"],
-		"module": "esnext",
-		"types": ["vite/client", "node"],
-		"skipLibCheck": true,
-
-		/* Bundler mode */
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": true,
-		"verbatimModuleSyntax": true,
-		"moduleDetection": "force",
-		"noEmit": true,
-		"jsx": "react-jsx",
-
-		/* React Router generates route types into .react-router/types */
-		"rootDirs": [".", "./.react-router/types"],
-
-		/* Linting */
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"erasableSyntaxOnly": true,
 		"noFallthroughCasesInSwitch": true
-	},
-	"include": [
-		"app",
-		"vite.config.ts",
-		"react-router.config.ts",
-		".react-router/types/**/*"
-	]
+	}
 }

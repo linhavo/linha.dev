@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import happy from "../assets/happy.png";
+---
+
+<Base title="linha.dev" description="Vojta Linha — programátor, designér.">
+	<main class="flex justify-center items-center h-dvh">
+		<div
+			class="md:gap-10 flex-col md:flex-row flex gap-5 md:items-center items-start justify-between"
+		>
+			<Image
+				src={happy}
+				alt=""
+				width={160}
+				height={160}
+				loading="eager"
+				class="bg-primary rounded-full w-20 h-20"
+			/>
+			<div class="flex flex-col gap-2">
+				<h1 class="text-3xl font-bold">Vojta Linha</h1>
+				<p>
+					<a href="https://github.com/linhavo" class="hover:text-primary"
+						>Programátor</a
+					>, <a href="" class="hover:text-primary">designér</a>, a úsměvavý
+					bojovník.
+				</p>
+			</div>
+		</div>
+	</main>
+</Base>
