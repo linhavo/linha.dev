@@ -6,6 +6,9 @@
 		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
 	--color-primary: #014b00;
+	--color-background: #1ff;
+	--color-muted: #222222;
+	--color-muted-foreground: #888;
 }
 
 :root {
@@ -17,4 +20,12 @@ body {
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+}
+
+@layer base {
+	h1 {
+		font-size: var(--text-3xl);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--tw-leading, var(--text-3xl--line-height));
+	}
 }
