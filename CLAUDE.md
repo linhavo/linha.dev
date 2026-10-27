@@ -43,7 +43,7 @@ import from `src/assets/`, not `public/`.
 
 Deploy: GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`) uploads
 `./dist`. Custom domain via `public/CNAME`, which must stay in `public/` to end
-up in the build artifact. `docs/*.md` are historical planning memos (an earlier,
+up in the build artifact. A manual `workflow_dispatch` run deploys any branch, so the live site can be ahead of `main`; the next push to `main` replaces it. `docs/*.md` are historical planning memos (an earlier,
 unbuilt monorepo plan with Cloudflare Pages) — not a description of current
 structure.
 
