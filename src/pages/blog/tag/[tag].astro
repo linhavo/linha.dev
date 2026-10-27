@@ -1,0 +1,28 @@
+---
+import PostList from "../../../components/PostList.astro";
+import { getPosts, tagPages, tagSlug } from "../../../posts";
+
+export async function getStaticPaths() {
+	const posts = (await getPosts()).map((post, i) => ({ post, number: i + 1 }));
+	const names = new Map(
+		posts.flatMap(({ post }) => post.data.tags.map((t) => [tagSlug(t), t])),
+	);
+	return [...names].map(([tag, name]) => ({
+		params: { tag },
+		props: {
+			name,
+			posts: posts
+				.filter(({ post }) => post.data.tags.some((t) => tagSlug(t) === tag))
+				.reverse(),
+		},
+	}));
+}
+
+const { name, posts } = Astro.props;
+const page = tagPages[Astro.params.tag] ?? {
+	title: name,
+	description: `Příspěvky se štítkem ${name}.`,
+};
+---
+
+<PostList title={page.title} description={page.description} posts={posts} />

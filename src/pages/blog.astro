@@ -1,0 +1,15 @@
+---
+import PostList from "../components/PostList.astro";
+import { getPosts } from "../posts";
+
+const posts = (await getPosts())
+	.map((post, i) => ({ post, number: i + 1 }))
+	.reverse();
+---
+
+<PostList
+	title="Blog"
+	description="Všechno, co jsem kdy sepsal."
+	posts={posts}
+	back={false}
+/>

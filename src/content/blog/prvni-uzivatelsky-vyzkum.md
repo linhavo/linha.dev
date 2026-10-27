@@ -1,10 +1,9 @@
 ---
 title: Co mě naučil první uživatelský výzkum
 subtitle: Pět rozhovorů, jedna knihovna a spousta předpokladů, které se ukázaly jako špatné.
-number: 3
 subject: Uživatelský výzkum
 semester: Podzim 2024
-tags: [výzkum, UX, knihovny]
+tags: [KISK, výzkum, UX, knihovny]
 date: 2025-01-12
 ---
 

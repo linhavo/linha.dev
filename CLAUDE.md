@@ -18,7 +18,7 @@ No test suite configured.
 **Astro**, static output. `src/pages/*.astro` is the routing table — one file
 per URL, no router config. `src/layouts/Base.astro` owns `<html>`/`<head>` and
 takes `title`/`description` as props; `Post.astro` wraps it for article-shaped
-pages. Both pages currently build to **zero bytes of JS**; keep it that way
+pages. All pages currently build to **zero bytes of JS**; keep it that way
 unless something genuinely needs interactivity, in which case add a framework
 island rather than making the whole page dynamic.
 
@@ -35,6 +35,8 @@ in `src/styles/index.css`, imported by `Base.astro`. Tailwind's `@theme`/
 Biome lints and formats `.astro` too, via `html.experimentalFullSupportEnabled`.
 That support is experimental — if it starts mangling `.astro` output, exclude
 the extension from the formatter rather than reintroducing Prettier.
+
+Blog posts are Markdown in `src/content/blog/` (`blog` collection); `/blog/<slug>`, `/blog/tag/<tag>`, and `/kisk` redirects to the KISK tag.
 
 Images go through `astro:assets` (`<Image>`), which optimizes at build time;
 import from `src/assets/`, not `public/`.

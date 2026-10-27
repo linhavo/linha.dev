@@ -3,6 +3,7 @@ import Footer from "../components/Footer.astro";
 import PostMeta from "../components/PostMeta.astro";
 import PostNav from "../components/PostNav.astro";
 import TopBar from "../components/TopBar.astro";
+import { formatNumber } from "../posts";
 import Base from "./Base.astro";
 
 type Link = { title: string; href: string };
@@ -10,8 +11,8 @@ type Props = {
 	title: string;
 	subtitle?: string;
 	number: number;
-	subject: string;
-	semester: string;
+	subject?: string;
+	semester?: string;
 	tags: string[];
 	date: Date;
 	prev?: Link;
@@ -27,10 +28,10 @@ const { title, subtitle, number, prev, next, date, ...meta } = Astro.props;
 		<article class="flex w-236 flex-col gap-14 pt-24">
 			<header class="flex flex-col gap-5 pl-66">
 				<div class="flex items-center gap-2.5 text-xs tracking-[1.2px]">
-					<span class="font-semibold text-primary">KISK PORTFOLIO</span>
+					<span class="font-semibold text-primary">BLOG</span>
 					<span class="size-0.75 rounded-full bg-muted-foreground"></span>
 					<span class="font-medium text-muted-foreground"
-						>Příspěvek {String(number).padStart(2, "0")}</span
+						>Příspěvek {formatNumber(number)}</span
 					>
 				</div>
 				<h1 class="text-5xl/13.25 font-bold tracking-[-1.2px]">{title}</h1>
