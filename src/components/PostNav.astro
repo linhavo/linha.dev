@@ -5,6 +5,7 @@ type Props = { prev?: Link; next?: Link };
 const { prev, next } = Astro.props;
 ---
 
+{(prev || next) && (
 <nav class="pl-66">
 	<div class="grid grid-cols-2 gap-8 border-t border-border pt-8">
 		{prev ? (
@@ -23,3 +24,4 @@ const { prev, next } = Astro.props;
 			)}
 	</div>
 </nav>
+)}

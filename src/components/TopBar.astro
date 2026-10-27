@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import happy from "../assets/happy.png";
+
+// The list page hides the back link, which would point to itself.
+type Props = { back?: boolean };
+
+const { back = true } = Astro.props;
 ---
 
 <header class="flex w-full items-center justify-between px-20 py-8">
@@ -14,6 +19,7 @@ import happy from "../assets/happy.png";
 		/>
 		<span class="text-[15px] font-semibold text-foreground">Vojta Linha</span>
 	</a>
+	{back && (
 	<a href="/kisk" class="flex items-center gap-2 text-sm text-muted-foreground">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +38,5 @@ import happy from "../assets/happy.png";
 		</svg>
 		Všechny příspěvky z KISKu
 	</a>
+	)}
 </header>
