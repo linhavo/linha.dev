@@ -1,7 +1,29 @@
 ---
-import Post from "../layouts/Post.astro";
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+
+const posts = (await getCollection("kisk")).sort(
+	(a, b) => a.data.number - b.data.number,
+);
 ---
 
-<Post heading="KISK Portfolio" subheading="Aneb jak jsem studoval v Brně">
-	<p>Hello world!</p>
-</Post>
+<Base
+	title="KISK Portfolio — linha.dev"
+	description="Aneb jak jsem studoval v Brně"
+>
+	<main class="flex justify-center py-50">
+		<div class="flex flex-col gap-7">
+			<div class="flex flex-col gap-2">
+				<h1>KISK Portfolio</h1>
+				<p class="text-muted-foreground">Aneb jak jsem studoval v Brně</p>
+			</div>
+			<ul class="flex flex-col gap-2">
+				{posts.map((post) => (
+						<li>
+							<a href={`/kisk/${post.id}`} class="hover:text-primary">{post.data.title}</a>
+						</li>
+					))}
+			</ul>
+		</div>
+	</main>
+</Base>

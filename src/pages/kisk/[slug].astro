@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from "astro:content";
+import Post from "../../layouts/Post.astro";
+
+export async function getStaticPaths() {
+	const posts = (await getCollection("kisk")).sort(
+		(a, b) => a.data.number - b.data.number,
+	);
+	const link = (post?: (typeof posts)[number]) =>
+		post && { title: post.data.title, href: `/kisk/${post.id}` };
+	return posts.map((post, i) => ({
+		params: { slug: post.id },
+		props: { post, prev: link(posts[i - 1]), next: link(posts[i + 1]) },
+	}));
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Post {...post.data} prev={prev} next={next}>
+	<Content />
+</Post>
