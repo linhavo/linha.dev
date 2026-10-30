@@ -1,23 +1,48 @@
 ---
+import Footer from "../components/Footer.astro";
+import PostMeta from "../components/PostMeta.astro";
+import PostNav from "../components/PostNav.astro";
+import TopBar from "../components/TopBar.astro";
+import { formatNumber } from "../posts";
 import Base from "./Base.astro";
 
+type Link = { title: string; href: string };
 type Props = {
-	heading: string;
-	subheading?: string;
-	description?: string;
+	title: string;
+	subtitle?: string;
+	number: number;
+	subject?: string;
+	semester?: string;
+	tags: string[];
+	date: Date;
+	prev?: Link;
+	next?: Link;
 };
 
-const { heading, subheading, description } = Astro.props;
+const { title, subtitle, number, prev, next, date, ...meta } = Astro.props;
 ---
 
-<Base title={`${heading} — linha.dev`} description={description}>
-	<div class="flex justify-center items-start py-50 h-dvh">
-		<div class="md:gap-7 flex-col flex gap-5 items-start justify-between">
-			<div class="flex flex-col gap-2">
-				<h1>{heading}</h1>
-				{subheading && <h6 class="text-muted-foreground">{subheading}</h6>}
+<Base title={`${title} — linha.dev`} description={subtitle}>
+	<div class="flex flex-col items-center">
+		<TopBar />
+		<article class="flex w-236 flex-col gap-14 pt-24">
+			<header class="flex flex-col gap-5 pl-66">
+				<div class="flex items-center gap-2.5 text-xs tracking-[1.2px]">
+					<span class="font-semibold text-primary">BLOG</span>
+					<span class="size-0.75 rounded-full bg-muted-foreground"></span>
+					<span class="font-medium text-muted-foreground"
+						>Příspěvek {formatNumber(number)}</span
+					>
+				</div>
+				<h1 class="text-5xl/13.25 font-bold tracking-[-1.2px]">{title}</h1>
+				{subtitle && <p class="text-xl/7.5 text-muted-foreground">{subtitle}</p>}
+			</header>
+			<div class="flex gap-16">
+				<PostMeta {...meta} />
+				<div class="prose min-w-0 flex-1"><slot /></div>
 			</div>
-			<div><slot /></div>
-		</div>
+			<PostNav prev={prev} next={next} />
+		</article>
+		<Footer published={date} />
 	</div>
 </Base>

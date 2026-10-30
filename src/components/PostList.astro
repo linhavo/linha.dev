@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+import { formatNumber, type Post, tagHref } from "../posts";
+import Footer from "./Footer.astro";
+import Tag from "./Tag.astro";
+import TopBar from "./TopBar.astro";
+
+type Props = {
+	title: string;
+	description: string;
+	posts: { post: Post; number: number }[];
+	back?: boolean;
+};
+
+const { title, description, posts, back } = Astro.props;
+---
+
+<Base title={`${title} — linha.dev`} description={description}>
+	<div class="flex min-h-dvh flex-col items-center">
+		<TopBar back={back} />
+		<main class="flex w-236 flex-1 flex-col gap-14 pt-24">
+			<header class="flex flex-col gap-2 pl-66">
+				<h1>{title}</h1>
+				<p class="text-muted-foreground">{description}</p>
+			</header>
+			{posts.length === 0 && (
+				<p class="border-t border-border pt-8 pl-66 text-muted-foreground">
+					Zatím tu nic není.
+				</p>
+			)}
+			<ul class="flex flex-col">
+				{posts.map(({ post, number }) => (
+						<li class="flex gap-16 border-t border-border py-8">
+							<div class="flex w-50 flex-none flex-col gap-1">
+								<span class="text-xs font-medium tracking-[1.2px] text-muted-foreground">
+									Příspěvek {formatNumber(number)}
+								</span>
+								<span class="text-sm/5 font-medium text-foreground">
+									{post.data.date.toLocaleDateString("cs-CZ")}
+								</span>
+							</div>
+							<div class="flex flex-1 flex-col gap-2">
+								<a
+									href={`/blog/${post.id}`}
+									class="text-2xl/8 font-bold tracking-[-0.4px] hover:text-primary"
+								>
+									{post.data.title}
+								</a>
+								{post.data.subtitle && (
+										<p class="text-muted-foreground">{post.data.subtitle}</p>
+									)}
+								<div class="flex flex-wrap gap-1.5 pt-2">
+									{post.data.tags.map((tag) => <Tag href={tagHref(tag)}>{tag}</Tag>)}
+								</div>
+							</div>
+						</li>
+					))}
+			</ul>
+		</main>
+		<Footer />
+	</div>
+</Base>

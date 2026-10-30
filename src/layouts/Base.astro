@@ -1,4 +1,5 @@
 ---
+import "@fontsource-variable/inter";
 import "../styles/index.css";
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 
 const { title, description } = Astro.props;
 
-// `build.format: 'file'` makes pathname `/index.html` / `/kisk.html`; the
+// `build.format: 'file'` makes pathname `/index.html` / `/blog.html`; the
 // canonical URL should be the clean path Pages also serves.
 const canonical = new URL(
 	Astro.url.pathname.replace(/index\.html$/, "").replace(/\.html$/, ""),

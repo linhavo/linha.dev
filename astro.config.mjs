@@ -9,6 +9,8 @@ export default defineConfig({
 	// directly rather than 301-ing to /kisk/. The home page is unaffected:
 	// the root is always index.html.
 	build: { format: "file" },
+	// KISK posts now live under /blog; the old list URL points to the KISK tag.
+	redirects: { "/kisk": "/blog/tag/kisk" },
 	// `output: 'static'` is the default: every page is prerendered to HTML at
 	// build time, which is all GitHub Pages can serve.
 	vite: {

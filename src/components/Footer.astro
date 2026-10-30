@@ -1,0 +1,20 @@
+---
+type Props = { published?: Date };
+
+const { published } = Astro.props;
+---
+
+<footer
+	class="flex w-full items-center justify-between px-20 pt-30 pb-12 text-[13px] text-muted-foreground"
+>
+	<span>© 2026 Vojta Linha</span>
+	{published && (
+			<span class="flex items-center gap-2.5">
+				Publikováno:
+				<span class="text-sm font-medium text-foreground">
+					{published.toLocaleDateString("cs-CZ")}
+				</span>
+			</span>
+		)}
+	<span>linha.dev</span>
+</footer>
