@@ -4,13 +4,9 @@ import { getPosts, tagPages, tagSlug } from "../../../posts";
 
 export async function getStaticPaths() {
 	const posts = (await getPosts()).map((post, i) => ({ post, number: i + 1 }));
-	// Named tag pages exist even without posts, so links like /kisk keep working.
-	const names = new Map([
-		...Object.keys(tagPages).map((tag) => [tag, tag] as const),
-		...posts.flatMap(({ post }) =>
-			post.data.tags.map((t) => [tagSlug(t), t] as const),
-		),
-	]);
+	const names = new Map(
+		posts.flatMap(({ post }) => post.data.tags.map((t) => [tagSlug(t), t])),
+	);
 	return [...names].map(([tag, name]) => ({
 		params: { tag },
 		props: {
