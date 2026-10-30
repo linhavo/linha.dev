@@ -10,8 +10,8 @@ Package manager: **Bun**.
 - `bun run build` — `astro check` (type/diagnostics) + `astro build`
 - `bun run check` — Biome lint + format check (sole lint/format tool)
 - `bun run format` — Biome, writes fixes
-
-No test suite configured.
+- `bun run test` — Bun tests for `tools/` (the site has none)
+- `bun run plugin:install` — build the Obsidian plugin and copy it into `$OBSIDIAN_VAULT`
 
 ## Architecture
 
@@ -36,7 +36,7 @@ Biome lints and formats `.astro` too, via `html.experimentalFullSupportEnabled`.
 That support is experimental — if it starts mangling `.astro` output, exclude
 the extension from the formatter rather than reintroducing Prettier.
 
-Blog posts are Markdown in `src/content/blog/` (`blog` collection); `/blog/<slug>`, `/blog/tag/<tag>`, and `/kisk` redirects to the KISK tag.
+Blog posts are Markdown in `src/content/blog/` (`blog` collection); `/blog/<slug>`, `/blog/tag/<tag>`, and `/kisk` redirects to the KISK tag. `src/content/schema.ts` is shared with the Obsidian plugin in `tools/obsidian-publish/`, which pushes posts straight to `main` (`bun run test` covers it).
 
 Images go through `astro:assets` (`<Image>`), which optimizes at build time;
 import from `src/assets/`, not `public/`.

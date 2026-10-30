@@ -102,9 +102,14 @@ body {
 		padding-top: 12px;
 	}
 
+	.prose img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 6px;
+	}
+
 	.prose figure img {
 		width: 100%;
-		border-radius: 6px;
 	}
 
 	.prose figcaption {
